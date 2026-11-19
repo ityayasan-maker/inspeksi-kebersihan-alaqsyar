@@ -1,0 +1,91 @@
+/* ================================================================
+   sidebar.css — Enhanced sidebar styles
+   ================================================================ */
+
+/* ── Sidebar ────────────────────────────────────────────────── */
+#sidebar {
+  width: var(--sidebar-w, 240px);
+  background: linear-gradient(180deg, #0f3322 0%, #1a5c38 60%, #1e6640 100%);
+  box-shadow: 2px 0 16px rgba(0,0,0,.15);
+}
+
+/* Active indicator */
+.sb-link.active {
+  background: rgba(255,255,255,.18);
+  position: relative;
+}
+.sb-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 4px; bottom: 4px;
+  width: 3px;
+  background: #c9a84c;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Hover effect dengan ripple subtle */
+.sb-link:hover {
+  background: rgba(255,255,255,.1);
+  padding-left: 15px;
+  transition: all .15s ease;
+}
+
+/* ── Topbar enhancements ────────────────────────────────────── */
+#topbar {
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(8px);
+}
+
+/* Dark mode sidebar */
+body.dark-mode #topbar {
+  background: rgba(15,23,42,.95);
+  border-color: rgba(255,255,255,.07);
+}
+body.dark-mode #topbar .topbar-title { color: #e2e8f0; }
+body.dark-mode .topbar-notif { color: #94a3b8; }
+body.dark-mode .topbar-notif:hover { background: #1e293b; color: #e2e8f0; }
+
+/* ── Responsive sidebar ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  #sidebar {
+    transform: translateX(-100%);
+    transition: transform .28s cubic-bezier(.4,0,.2,1);
+    z-index: 1040;
+    box-shadow: none;
+  }
+  #sidebar.open {
+    transform: translateX(0);
+    box-shadow: 4px 0 24px rgba(0,0,0,.25);
+  }
+  .sb-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 1039;
+    backdrop-filter: blur(2px);
+  }
+  .sb-overlay.active { display: block; animation: fadeIn .2s ease; }
+}
+
+/* ── Nav section labels ─────────────────────────────────────── */
+.sb-section-label {
+  font-size: 10px;
+  letter-spacing: .1em;
+  opacity: .6;
+  margin-top: 4px;
+}
+
+/* ── Submenu indent ─────────────────────────────────────────── */
+.sb-submenu .sb-link {
+  padding-left: 36px;
+  font-size: 12.5px;
+}
+.sb-submenu .sb-link::before { left: 20px; }
+
+/* ── User area bottom ───────────────────────────────────────── */
+.sb-user {
+  background: rgba(0,0,0,.15);
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding: 12px 14px;
+  margin-top: auto;
+}

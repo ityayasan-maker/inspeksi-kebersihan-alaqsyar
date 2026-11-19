@@ -1,0 +1,16 @@
+# Uploads content (keep folder and .htaccess)
+/public/uploads/inspeksi/*
+!/public/uploads/inspeksi/.htaccess
+/public/uploads/profile/*
+!/public/uploads/profile/.htaccess
+/public/uploads/temp/*
+!/public/uploads/temp/.htaccess
+
+# Environment & Sensitive configs
+.env
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini

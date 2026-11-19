@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# Jika file atau direktori nyata sudah ada, jangan rewrite lagi
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Jangan rewrite jika request sudah mengarah ke /public/
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]
