@@ -22,7 +22,7 @@ class Helper
 
     public static function asset(string $path): string
     {
-        return self::baseUrl('public/' . ltrim($path, '/'));
+        return self::baseUrl(ltrim($path, '/'));
     }
 
     /* ── String ──────────────────────────────────────────── */
@@ -156,7 +156,7 @@ class Helper
 
     public static function uploadUrl(string $path): string
     {
-        return self::baseUrl('public/uploads/' . ltrim($path, '/'));
+        return self::baseUrl('uploads/' . ltrim($path, '/'));
     }
 
     public static function generateFilename(string $ext): string

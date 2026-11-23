@@ -1,6 +1,9 @@
 Options -Indexes
 RewriteEngine On
 
+# Jika request masih menyertakan prefix /public/, strip agar langsung menemukan file
+RewriteRule ^public/(.*)$ $1 [L]
+
 # Izinkan akses langsung ke file & folder nyata
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

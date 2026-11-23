@@ -25,7 +25,7 @@ class Security
                 "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://cdn.datatables.net",
                 "img-src 'self' data: blob:",
                 "font-src 'self' https://cdn.jsdelivr.net",
-                "connect-src 'self'",
+                "connect-src 'self' https://cdn.jsdelivr.net",
                 "frame-ancestors 'none'",
             ]);
             header("Content-Security-Policy: {$csp}");
