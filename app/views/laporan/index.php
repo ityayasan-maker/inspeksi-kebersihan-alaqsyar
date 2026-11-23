@@ -184,6 +184,9 @@ $statusList = [''=>'Semua Status','bersih'=>'Bersih','kurang_bersih'=>'Kurang Be
                class="btn btn-sm btn-outline-primary me-1" title="Detail">
               <i class="bi bi-eye"></i>
             </a>
+            <button type="button" class="btn btn-sm btn-outline-info me-1" title="Galeri Foto" onclick="loadGallery(<?= $r['id'] ?>)">
+              <i class="bi bi-images"></i>
+            </button>
             <a href="<?= Helper::baseUrl("laporan/print?id={$r['id']}") ?>"
                class="btn btn-sm btn-outline-secondary" title="Cetak" target="_blank">
               <i class="bi bi-printer"></i>

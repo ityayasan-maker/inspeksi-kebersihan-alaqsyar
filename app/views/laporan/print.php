@@ -232,6 +232,46 @@ tr:nth-child(even) td { background:#fafbfc; }
   </table>
   <?php endforeach; ?>
 
+  <!-- Dokumentasi Foto Hasil Inspeksi -->
+  <?php
+  $allPhotos = [];
+  if (!empty($inspeksi['foto_ruangan'])) {
+    $allPhotos[] = [
+      'aspek'   => 'Dokumentasi Kondisi Ruangan',
+      'kondisi' => $inspeksi['status'] ?? 'bersih',
+      'catatan' => $inspeksi['catatan_umum'] ?? 'Kondisi umum ruangan saat inspeksi dimulai',
+      'url'     => Helper::uploadUrl("inspeksi/{$inspeksi['id']}/{$inspeksi['foto_ruangan']}")
+    ];
+  }
+  foreach ($details as $d) {
+    if (!empty($d['foto'])) {
+      $allPhotos[] = [
+        'aspek'   => $d['aspek'],
+        'kondisi' => $d['kondisi'],
+        'catatan' => $d['catatan'] ?? '',
+        'url'     => Helper::uploadUrl("inspeksi/{$inspeksi['id']}/{$d['foto']}")
+      ];
+    }
+  }
+  ?>
+  <?php if (!empty($allPhotos)): ?>
+  <div class="section-title">Dokumentasi Foto Hasil Inspeksi (<?= count($allPhotos) ?> Foto)</div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(180px, 1fr)); gap:12px; margin-bottom:20px;">
+    <?php foreach ($allPhotos as $p): ?>
+    <div style="border:1px solid #e5e7eb; border-radius:6px; overflow:hidden; background:#fafbfc; padding:6px; text-align:center;">
+      <div style="aspect-ratio:4/3; overflow:hidden; border-radius:4px; margin-bottom:6px; background:#f0f2f5;">
+        <img src="<?= $p['url'] ?>" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+      <div style="font-size:11px; font-weight:600; color:#1a2035; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><?= Helper::e($p['aspek']) ?></div>
+      <span class="badge badge-<?= $p['kondisi'] ?>" style="font-size:9.5px; margin-top:2px; display:inline-block;"><?= Helper::statusLabel($p['kondisi']) ?></span>
+      <?php if (!empty($p['catatan'])): ?>
+      <div style="font-size:10px; color:#666; margin-top:2px; font-style:italic;"><?= Helper::e($p['catatan']) ?></div>
+      <?php endif; ?>
+    </div>
+    <?php endforeach; ?>
+  </div>
+  <?php endif; ?>
+
   <!-- Area tanda tangan -->
   <div class="ttd-area">
     <div class="ttd-box">
